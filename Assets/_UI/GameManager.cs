@@ -39,6 +39,11 @@ public class GameManager : MonoBehaviour
     public void live()
     {
         Lives -= 1;
+
+        if(Lives <= 0)
+        {
+            HUD.HUDManager.GameOver();
+        }
    
     }
 
@@ -47,4 +52,6 @@ public class GameManager : MonoBehaviour
         Score += 1;
         
     }
+
+
 }
