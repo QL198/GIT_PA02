@@ -17,12 +17,14 @@ public class HUD : MonoBehaviour
 
     public void UpdateScore()
     {
+        GameManager.thisManager.ScoreUpdate();
         Txt_Score.text = "SCORE : " + GameManager.Score;
     }
 
     //updates the number of hearts for lives
     public void UpdateLives()
     {
+        GameManager.thisManager.live();
         Image_Lives.rectTransform.sizeDelta = new Vector2(GameManager.Lives * 50, 30);
     }
 

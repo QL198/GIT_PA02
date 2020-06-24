@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     private Vector3 MoveDirection = Vector3.zero;
     private Transform playerMesh = null;
     private Animator thisAnimator = null;
+    public GameObject Particle;
 
     private float moveSpeed = 0.05f;
 
@@ -52,6 +53,24 @@ public class Player : MonoBehaviour
 
         thisController.Move(MoveDirection);
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -1.5f, 1.5f), transform.position.y, transform.position.z);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+
+
+        if (collision.gameObject.tag == "Obstacle")
+        {
+            
+            Vector3 spawnPos = new Vector3(transform.position.x , transform.position.y, transform.position.z);
+
+            GameObject TempObject = Instantiate(Particle, spawnPos, transform.rotation) as GameObject;
+            Destroy(TempObject,2);
+            Destroy(collision.gameObject);
+            HUD.HUDManager.UpdateLives();
+
+        }
     }
 
 }
